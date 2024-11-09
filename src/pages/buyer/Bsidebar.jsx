@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaShoppingCart, FaUser, FaHeart, FaEnvelope } from 'react-icons/fa';
-import OrderHistory from '../orders/OrderHistory';
 
 const Bsidebar = ({ orders }) => {
   return (
@@ -23,11 +22,6 @@ const Bsidebar = ({ orders }) => {
           </Link>
         </li>
         <li>
-          <Link to="/buyer/account" className="flex items-center hover:bg-green-700 p-2 rounded">
-            <FaUser className="mr-2" /> Account
-          </Link>
-        </li>
-        <li>
           <Link to="/buyer/wishlist" className="flex items-center hover:bg-green-700 p-2 rounded">
             <FaHeart className="mr-2" /> Wishlist
           </Link>
@@ -37,10 +31,15 @@ const Bsidebar = ({ orders }) => {
             <FaEnvelope className="mr-2" /> Messages
           </Link>
         </li>
+        <li>
+          <Link to="/buyer/account" className="flex items-center hover:bg-green-700 p-2 rounded">
+            <FaUser className="mr-2" /> Order History
+          </Link>
+        </li>
       </ul>
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <OrderHistory orders={orders} />
-      </div>
+      </div> */}
     </div>
   );
 };

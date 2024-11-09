@@ -36,6 +36,7 @@ const Register = () => {
               placeholder="Enter your name"
               value={formData.name}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="mb-4">
@@ -47,6 +48,7 @@ const Register = () => {
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="mb-4">
@@ -58,6 +60,7 @@ const Register = () => {
               placeholder="Enter your password"
               value={formData.password}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="mb-4">

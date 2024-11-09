@@ -57,7 +57,7 @@ const AddProduct = ({ products, setProducts }) => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-[#00b207]  mb-6">Manage Products</h1>
+      <h1 className="text-3xl font-bold text-center text-[#00b207]  mb-6 mt-8">Manage Products</h1>
       <div className="bg-white shadow-md rounded p-6 max-w-md mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

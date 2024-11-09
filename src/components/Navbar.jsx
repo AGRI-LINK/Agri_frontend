@@ -1,21 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUser, FaList, FaEnvelope, FaMap, FaCreditCard, FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = ({ cartItemCount }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
-    <nav className="bg-[#00b207] text-white shadow-md p-4">
+    <nav className="fixed w-full bg-[#00b207] text-white shadow-md p-4">
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-2xl font-bold">
           <Link to="/" className="flex items-center">
             <img src="/path/to/logo.png" alt="AgriLink Logo" className="h-8 mr-2" />
-            {/* Optionally, you can include text here if needed */}
           </Link>
         </div>
         <div className="flex space-x-6">
-          <Link to="/profile" className="hover:bg-green-700 px-3 py-2 rounded flex items-center">
-            <FaUser size={20} />
-          </Link>
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className="hover:bg-green-700 px-3 py-2 rounded flex items-center"
+            >
+              <FaUser size={20} /> Account
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg">
+                <Link
+                  to="/login"
+                  className="block px-4 py-2 hover:bg-gray-200"
+                  onClick={() => setIsDropdownOpen(false)}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="block px-4 py-2 hover:bg-gray-200"
+                  onClick={() => setIsDropdownOpen(false)}
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+          </div>
           <Link to="/products" className="hover:bg-green-700 px-3 py-2 rounded flex items-center">
             <FaList size={20} />
           </Link>
