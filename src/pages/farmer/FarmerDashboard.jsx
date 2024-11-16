@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import AddProduct from '../products/AddProduct';
 import ProductListing from '../products/ProductListing';
+import Profile from '../../components/Profile';
 
 const FarmerDashboard = () => {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ const FarmerDashboard = () => {
       <Sidebar />
       <div className="flex-1 ml-64 p-6">
         <AddProduct products={products} setProducts={setProducts} />
-        {/* <ProductListing products={products} onEdit={handleEdit} onDelete={handleDelete} /> */}
+       
       </div>
     </div>
   );

@@ -1,35 +1,48 @@
+// src/components/products/ProductList.js
 import React from 'react';
+import ProductCard from './ProductCard';
 
-const ProductListing = ({ products, onEdit, onDelete }) => {
+function ProductListing() {
+  // This would normally come from an API
+  const sampleProducts = [
+    {
+      id: 1,
+      name: "Fresh Tomatoes",
+      category: "Vegetables",
+      price: 2.99,
+      quantity: 100,
+      location: "Nairobi, Kenya",
+      image: "tomato-image-url"
+    },
+    // Add more sample products...
+  ];
+
   return (
-    <div className="mt-6">
-      <h2 className="text-2xl font-bold mb-4">Product Listings</h2>
-      <ul className="list-disc pl-5">
-        {products.map((product) => (
-          <li key={product.id} className="mb-2">
-            <div className="flex justify-between items-center">
-              <span>{product.name} - {product.quantity} - {product.price}</span>
-              {product.image && <img src={product.image} alt={product.name} className="h-16 w-16 object-cover rounded" />}
-              <div>
-                <button
-                  onClick={() => onEdit(product)}
-                  className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 mr-2"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => onDelete(product.id)}
-                  className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </li>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-gray-800">Available Products</h2>
+        <div className="flex space-x-4">
+          <select className="border border-gray-300 rounded-lg px-4 py-2">
+            <option>Sort by Price</option>
+            <option>Lowest to Highest</option>
+            <option>Highest to Lowest</option>
+          </select>
+          <select className="border border-gray-300 rounded-lg px-4 py-2">
+            <option>Filter by Category</option>
+            <option>Vegetables</option>
+            <option>Fruits</option>
+            <option>Grains</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {sampleProducts.map(product => (
+          <ProductCard key={product.id} product={product} />
         ))}
-      </ul>
+      </div>
     </div>
   );
-};
+}
 
 export default ProductListing;

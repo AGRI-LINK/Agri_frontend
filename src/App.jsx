@@ -4,7 +4,6 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
-import FarmerDashboard from './pages/farmer/FarmerDashboard'
 import Profile from './components/Profile'
 import Messaging from './pages/Messaging'
 import Login from './components/Login'
@@ -23,6 +22,8 @@ import Footer from './components/Footer'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import BuyerDashboard from './pages/buyer/BuyerDashboard'
 import Contact from './pages/Contact'
+import Sidebar from './pages/farmer/Sidebar'
+import EditProfile from './components/EditProfile'
 
 
 
@@ -45,7 +46,7 @@ function App() {
         <Route path="/products" element={<ProductListing addItemToCart={addItemToCart} />} />
         <Route path="/cart" element={<ShoppingCart cartItems={cartItems} removeItemFromCart={removeItemFromCart} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/farmer" element={<FarmerDashboard />} />
+        <Route path="/farmer" element={<Sidebar/>} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Messaging />} />
         <Route path="/login" element={<Login />} />
@@ -56,9 +57,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/farmer" element={<FarmerDashboard /> } />
         <Route path="/buyer" element={<BuyerDashboard /> } />
         <Route path="/addproduct" element={<AddProduct /> } />
+        <Route path="/editprofile" element={<EditProfile /> } />
+        <Route path="/card" element={<ProductCard /> } />
       </Routes>
       <Footer />
     </Router>

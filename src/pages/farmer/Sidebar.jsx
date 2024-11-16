@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaPlus, FaChartLine, FaEnvelope, FaUserCircle } from 'react-icons/fa';
+import Profile from '../../components/Profile';
 
 const Sidebar = () => {
   return (
@@ -12,17 +13,15 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/profile" className="flex items-center hover:bg-green-700 p-2 rounded-lg">
-            <FaUserCircle className="mr-2" />Profile
+          <Profile />
+        </li>
+        <li>
+          <Link to="/addproduct" className="flex items-center hover:bg-green-700 p-2 rounded">
+            <FaPlus className="mr-2" /> Add Products
           </Link>
         </li>
         <li>
-          <Link to="/farmer/addproduct" className="flex items-center hover:bg-green-700 p-2 rounded">
-            <FaPlus className="mr-2" /> Add/Edit Products
-          </Link>
-        </li>
-        <li>
-          <Link to="/farmer/sales" className="flex items-center hover:bg-green-700 p-2 rounded">
+          <Link to="/orderhistory" className="flex items-center hover:bg-green-700 p-2 rounded">
             <FaChartLine className="mr-2" /> Track Sales
           </Link>
         </li>

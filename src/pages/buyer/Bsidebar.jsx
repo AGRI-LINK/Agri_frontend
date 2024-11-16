@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaShoppingCart, FaUser, FaHeart, FaEnvelope } from 'react-icons/fa';
+import Profile from '../../components/Profile';
 
 const Bsidebar = ({ orders }) => {
   return (
@@ -12,17 +13,22 @@ const Bsidebar = ({ orders }) => {
       </div>
       <ul className="space-y-4">
         <li>
-          <Link to="/buyer/products" className="flex items-center hover:bg-green-700 p-2 rounded">
+          <Link to="/profile">
+            <Profile />
+          </Link>
+        </li>
+        <li>
+          <Link to="/products" className="flex items-center hover:bg-green-700 p-2 rounded">
             <FaHome className="mr-2" /> Products
           </Link>
         </li>
         <li>
-          <Link to="/buyer/orders" className="flex items-center hover:bg-green-300 p-2 rounded">
-            <FaShoppingCart className="mr-2" /> Orders
+          <Link to="/cart" className="flex items-center hover:bg-green-300 p-2 rounded">
+            <FaShoppingCart className="mr-2" /> Shopping Cart
           </Link>
         </li>
         <li>
-          <Link to="/buyer/wishlist" className="flex items-center hover:bg-green-700 p-2 rounded">
+          <Link to="/wishlist" className="flex items-center hover:bg-green-700 p-2 rounded">
             <FaHeart className="mr-2" /> Wishlist
           </Link>
         </li>

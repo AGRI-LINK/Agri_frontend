@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ProductListing from '../products/ProductListing';
 import Bsidebar from './Bsidebar';
+import Profile from '../../components/Profile';
 
 const BuyerDashboard = () => {
   const [products, setProducts] = useState([]); 

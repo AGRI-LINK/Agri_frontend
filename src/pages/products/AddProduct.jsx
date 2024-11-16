@@ -1,64 +1,52 @@
 import React, { useState } from 'react';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import { apiClient } from '../../services/config';
+import { toast } from 'react-toastify';
 
 const AddProduct = ({ products, setProducts }) => {
-  const [formData, setFormData] = useState({
-    id: '',
-    name: '',
-    quantity: '',
-    price: '',
-    image: null,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData({
-        ...formData,
-        image: URL.createObjectURL(file),
-      });
-    }
+    const files = Array.from(e.target.files);
+    setSelectedImages(files);
   };
 
-  const handleSubmit = (e) => {
+  const handleUpload = () => {
+    // Implement the logic to upload the selected images to the server
+    // You can use FormData to append the image files and send them to the server
+    const formData = new FormData();
+    selectedImages.forEach((image, index) => {
+      formData.append(`image${index + 1}`, image);
+    });
+
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.id) {
-      setProducts((prevProducts) =>
-        prevProducts.map((product) =>
-          product.id === formData.id ? formData : product
-        )
-      );
-    } else {
-      setProducts((prevProducts) => [
-        ...prevProducts,
-        { ...formData, id: Date.now().toString() },
-      ]);
+    try {
+      const formData = new FormData(e.target)
+      const response = await apiClient.post('/api/products/add', formData);
+      if (response.status === 200) {
+        const newProduct = response.data;
+        setProducts((prevProducts) => [
+          ...prevProducts,
+          newProduct,
+        ]);
+        setFormData({
+          name: "", description: "", quantity: "", price: "", images: [],
+          category: "", location: "",
+        });
+      } else {
+        console.error('Failed to add product');
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
-    setFormData({ id: '', name: '', quantity: '', price: '', image: null });
-  };
-
-  const handleEdit = (product) => {
-    setFormData(product);
-  };
-
-  const handleDelete = (productId) => {
-    setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== productId)
-    );
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-[#00b207]  mb-6 mt-8">Manage Products</h1>
-      <div className="bg-white shadow-md rounded p-6 max-w-md mx-auto">
+      <div className="bg-white shadow-md rounded p-9 max-w-md mx-auto">
+        <h1 className="text-3xl font-bold text-center text-[#00b207]  mb-6 mt-8">Manage Products</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700">Product Name:</label>
@@ -67,9 +55,32 @@ const AddProduct = ({ products, setProducts }) => {
               name="name"
               className="w-full p-2 border rounded"
               placeholder="Enter product name"
-              value={formData.name}
-              onChange={handleChange}
             />
+          </div>
+          <div>
+            <label htmlFor="description">Description</label>
+            <textarea
+              type="text"
+              name="description"
+              className="w-full p-2 border rounded"
+              placeholder="Description"
+              rows={3}
+            />
+          </div>
+          <div>
+            <label htmlFor="category">Category</label>
+            <select
+            type="text"
+            name="category"
+            className="w-full p-2 border rounded"
+            >
+            <option className="text-gray-700">Select a Category</option>
+              <option name="Vegetables">Vegetables</option>  
+              <option name="Fruits">Fruits</option>  
+              <option name="Grains">Grains</option>  
+              <option name="Meat">Meat</option>  
+              <option name="Others">Others</option>  
+            </select>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">Quantity:</label>
@@ -78,8 +89,6 @@ const AddProduct = ({ products, setProducts }) => {
               name="quantity"
               className="w-full p-2 border rounded"
               placeholder="Enter quantity"
-              value={formData.quantity}
-              onChange={handleChange}
             />
           </div>
           <div className="mb-4">
@@ -89,8 +98,15 @@ const AddProduct = ({ products, setProducts }) => {
               name="price"
               className="w-full p-2 border rounded"
               placeholder="Enter price"
-              value={formData.price}
-              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Location:</label>
+            <input
+              type="text"
+              name="location"
+              className="w-full p-2 border rounded"
+              placeholder="Enter location"
             />
           </div>
           <div className="mb-4">
@@ -98,9 +114,11 @@ const AddProduct = ({ products, setProducts }) => {
             <div className="flex items-center justify-center w-full">
               <input
                 type="file"
+                name="images"
                 accept="image/*"
                 className="hidden"
                 id="file-upload"
+                multiple
                 onChange={handleImageChange}
               />
               <label
@@ -112,16 +130,12 @@ const AddProduct = ({ products, setProducts }) => {
                 <span className="text-sm text-gray-500">(e.g., photo of your product)</span>
               </label>
             </div>
-            {formData.image && (
-              <img src={formData.image} alt="Product Preview" className="mt-2 h-32 w-full object-cover rounded" />
-            )}
           </div>
           <button type="submit" className="bg-[#00b207]  text-white px-4 py-2 rounded hover:bg-green-700 w-full">
-            {formData.id ? 'Edit Product' : 'Add Product'}
+            Add Product
           </button>
         </form>
       </div>
-    </div>
   );
 };
 

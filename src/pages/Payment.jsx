@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import telecel from '../assets/images/airteltigo.jpg';
+import mtn from '../assets/images/momo.webp';
+import airteltigo from '../assets/images/telecel.webp';
+import visacard from '../assets/images/visacard.webp';
+import mastercard from '../assets/images/mastercard.png';
 
 const Payment = () => {
   const [paymentMethod, setPaymentMethod] = useState('mobileMoney');
@@ -39,10 +44,17 @@ const Payment = () => {
                 <option value="telecel">Telecel</option>
                 <option value="airteltigo">AirtelTigo</option>
               </select>
-              <div className="flex space-x-4 mt-2">
-                <img src="/images/mtn.png" alt="MTN" className="h-8" />
-                <img src="/images/telecel.png" alt="Telecel" className="h-8" />
-                <img src="/images/airteltigo.png" alt="AirtelTigo" className="h-8" />
+              <div className="flex space-x-8 mt-2 justify-center">
+                <img 
+                src={mtn} 
+                alt="MTN" 
+                className="h-12" />
+                <img 
+                src={telecel} 
+                alt="Telecel" 
+                className="h-12" />
+                <img 
+                src={airteltigo} alt="AirtelTigo" className="h-12" />
               </div>
             </div>
           )}
@@ -61,9 +73,12 @@ const Payment = () => {
                 <label className="block text-gray-700">CVV:</label>
                 <input type="text" className="w-full p-2 border rounded" placeholder="123" />
               </div>
-              <div className="flex space-x-4 mt-2">
-                <img src="/images/visa.png" alt="Visa" className="h-8" />
-                <img src="/images/mastercard.png" alt="MasterCard" className="h-8" />
+              <div className="flex space-x-8 mt-2 justify-center">
+                <img 
+                src={visacard} alt="Visa" 
+                className="h-12" />
+                <img 
+                src={mastercard} alt="MasterCard" className="h-12" />
               </div>
             </>
           )}

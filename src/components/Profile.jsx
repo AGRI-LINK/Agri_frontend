@@ -1,43 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { apiGetProfile } from '../services/users';
+import { toast } from 'react-toastify';
+import { FiLogOut } from 'react-icons/fi';
 
 const Profile = () => {
-  // Sample transaction data
-  const [transactions] = useState([
-    { id: 1, description: 'Sold 100kg of apples to Buyer A' },
-    { id: 2, description: 'Bought 50kg of seeds from Supplier B' },
-    // Add more transactions as needed
-  ]);
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await apiGetProfile();
+        console.log(response.data);
+        setProfile(response.data.user);
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!profile) {
+    return <div>Loading...</div>; // Display a loading message while fetching data
+  }
+
+  const { name, email } = profile;
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-[#00b207] mb-6">Your Profile</h1>
-      <div className="bg-white shadow-md rounded p-4">
-        <h2 className="text-2xl font-bold mb-4">Profile Information</h2>
-        <div className="mb-4">
-          <label className="block text-gray-700">Name:</label>
-          <input type="text" className="w-full p-2 border rounded" placeholder="John Doe" />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Email:</label>
-          <input type="email" className="w-full p-2 border rounded" placeholder="john@example.com" />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Farm Location:</label>
-          <input type="text" className="w-full p-2 border rounded" placeholder="123 Farm Lane" />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Farming Practices:</label>
-          <textarea className="w-full p-2 border rounded" placeholder="Organic, Sustainable, etc."></textarea>
-        </div>
-        <button className="bg-[#00b207]  text-white px-4 py-2 rounded hover:bg-green-700">Save Changes</button>
-      </div>
-      <div className="mt-6">
-        <h2 className="text-2xl font-bold mb-4">Transaction History</h2>
-        <ul className="list-disc pl-5">
-          {transactions.map(transaction => (
-            <li key={transaction.id}>{transaction.description}</li>
-          ))}
-        </ul>
+    <div className="user-profile p-4 border rounded shadow">
+      <h2 className="text-lg font-bold">Profile</h2>
+      {/* {userImage && <img src={userImage} alt="User" className="rounded-full w-24 h-24 mb-2" />} */}
+      <p className="font-semibold">{name}</p>
+      <p className="text-sm text-gray-600">{email}</p>
+      <div>
+        <button className="flex">
+          <FiLogOut />
+        </button>
       </div>
     </div>
   );
