@@ -22,7 +22,6 @@ const FarmerDashboard = () => {
       <Sidebar />
       <div className="flex-1 ml-64 p-6">
         <AddProduct products={products} setProducts={setProducts} />
-       
       </div>
     </div>
   );

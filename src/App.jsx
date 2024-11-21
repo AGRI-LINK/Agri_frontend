@@ -1,31 +1,28 @@
-import { useState } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useState } from 'react';
+import './App.css';
 
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-import Profile from './components/Profile'
-import Messaging from './pages/Messaging'
-import Login from './components/Login'
-import Map from './pages/Map'
-import Payment from './pages/Payment'
-import Notifications from './components/Notifications'
-import ReviewAndRating from './components/ReviewAndRating'
-import Register from './components/Register'
-import ProductCard from './pages/products/ProductCard'
-import ProductListing from './pages/products/ProductListing'
-import ProductDetails from './pages/products/ProductDetails'
-import AddProduct from './pages/products/AddProduct'
-import ShoppingCart from './pages/buyer/ShoppingCart'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import PrivacyPolicy from './pages/PrivacyPolicy'
-import BuyerDashboard from './pages/buyer/BuyerDashboard'
-import Contact from './pages/Contact'
-import Sidebar from './pages/farmer/Sidebar'
-import EditProfile from './components/EditProfile'
-
-
+import Home from './pages/Home';
+import About from './pages/About';
+import Profile from './components/Profile';
+import Messaging from './pages/Messaging';
+import Login from './components/Login';
+import Map from './pages/Map';
+import Payment from './pages/Payment';
+import Notifications from './components/Notifications';
+import Register from './components/Register';
+import ProductCard from './pages/products/ProductCard';
+import ProductListing from './pages/products/ProductListing';
+import ProductDetails from './pages/products/ProductDetails';
+import AddProduct from './pages/products/AddProduct';
+import ShoppingCart from './pages/buyer/ShoppingCart';
+import Contact from './pages/Contact';
+import BuyerDashboard from './pages/buyer/BuyerDashboard';
+import FarmerDashboard from './pages/farmer/FarmerDashboard';
+import EditProfile from './components/EditProfile';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import RootLayout from './layouts/RootLayout';
+import ReviewAndRating from './components/ReviewAndRating';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -38,33 +35,113 @@ function App() {
     setCartItems((prevItems) => prevItems.filter(item => item.id !== itemId));
   };
 
-  return (
-    <Router>
-      <Navbar cartItemCount={cartItems.length} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductListing addItemToCart={addItemToCart} />} />
-        <Route path="/cart" element={<ShoppingCart cartItems={cartItems} removeItemFromCart={removeItemFromCart} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/farmer" element={<Sidebar/>} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/messages" element={<Messaging />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/map" element={<Map />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/review" element={<ReviewAndRating />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/buyer" element={<BuyerDashboard /> } />
-        <Route path="/addproduct" element={<AddProduct /> } />
-        <Route path="/editprofile" element={<EditProfile /> } />
-        <Route path="/card" element={<ProductCard /> } />
-      </Routes>
-      <Footer />
-    </Router>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout cartItemCount={cartItems.length} />,
+      children: [
+        {
+          index: true,
+          element: <Home />
+        },
+        {
+          path: "about",
+          element: <About />
+        },
+        {
+          path: "contact",
+          element: <Contact />
+        },
+        {
+          path: "privacy",
+          element: <PrivacyPolicy />
+        },
+        {
+          path: "login",
+          element: <Login />
+        },
+        {
+          path: "register",
+          element: <Register />
+        },
+        {
+          path: "products",
+          element: <ProductListing addItemToCart={addItemToCart} />
+        },
+        {
+          path: "products/:id",
+          element: <ProductDetails />
+        },
+        {
+          path: "cart",
+          element: <ShoppingCart
+            cartItems={cartItems}
+            removeItemFromCart={removeItemFromCart}
+          />
+        }
+      ]
+    },
+    {
+      path: "/messages",
+      element: <Messaging />
+    },
+    {
+      path: "/notifications",
+      element: <Notifications />
+    },
+    {
+      path: "/farmer",
+      element: <FarmerDashboard />,
+      children: [
+        {
+          path: "profile",
+          element: <Profile />
+        },
+        {
+          path: "addproduct",
+          element: <AddProduct />
+        },
+        
+        {
+          path: "products",
+          element: <ProductCard />
+        },
+        {
+          path: "edit",
+          element: <EditProfile />
+        }
+      ]
+    },
+    {
+      path: "/buyer",
+      element: <BuyerDashboard />,
+      children: [
+        {
+          path: "profile",
+          element: <Profile />
+        },
+        {
+          path: "messages",
+          element: <Messaging />
+        },
+        
+        {
+          path: "reviews",
+          element: <ReviewAndRating />
+        },
+        {
+          path: "map",
+          element: <Map />
+        },
+        {
+          path: "payment",
+          element: <Payment />
+        }
+      ]
+    }
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

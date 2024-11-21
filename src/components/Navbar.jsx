@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUser, FaList, FaEnvelope, FaMap, FaCreditCard, FaShoppingCart } from 'react-icons/fa';
+import agrilogo from "../assets/images/agri.svg"
 
 const Navbar = ({ cartItemCount }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -14,7 +15,7 @@ const Navbar = ({ cartItemCount }) => {
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-2xl font-bold">
           <Link to="/" className="flex items-center">
-            <img src="/path/to/logo.png" alt="AgriLink Logo" className="h-8 mr-2" />
+            <img src={agrilogo} alt="AgriLink Logo" className="h-10 w-10" />
           </Link>
         </div>
         <div className="flex space-x-6">
