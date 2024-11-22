@@ -22,7 +22,7 @@ import EditProfile from './components/EditProfile';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import RootLayout from './layouts/RootLayout';
 import ReviewAndRating from './components/ReviewAndRating';
-import RegisterProfile from './components/RegisterProfile';
+import Register from './components/Register';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -54,7 +54,7 @@ function App() {
         },
         {
           path: "regist",
-          element: <RegisterProfile />
+          element: <Register />
         },
         {
           path: "privacy",
