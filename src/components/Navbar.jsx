@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUser, FaList, FaEnvelope, FaMap, FaCreditCard, FaShoppingCart } from 'react-icons/fa';
-import agrilogo from "../assets/images/agri.svg"
+import agrilogo from "../assets/images/agriii.jpg"
 
 const Navbar = ({ cartItemCount }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
