@@ -49,12 +49,12 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#00b207] text-white py-8 bottom-0 left-0 w-full">
+    <footer className="bg-[#00b207] text-white py-8 fixed bottom-0 left-0 w-full">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
             <h3 className="text-xl font-bold mb-4">Agrivate</h3>
-            <p className="text-sm">Connecting farmers and buyers for a sustainable future.</p>
+            <p className="text-sm">"Bridging Farmers and Buyers for seamless produce trading!"</p>
           </div>
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>

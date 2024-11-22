@@ -10,7 +10,6 @@ import Login from './components/Login';
 import Map from './pages/Map';
 import Payment from './pages/Payment';
 import Notifications from './components/Notifications';
-import Register from './components/Register';
 import ProductCard from './pages/products/ProductCard';
 import ProductListing from './pages/products/ProductListing';
 import ProductDetails from './pages/products/ProductDetails';
@@ -23,6 +22,7 @@ import EditProfile from './components/EditProfile';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import RootLayout from './layouts/RootLayout';
 import ReviewAndRating from './components/ReviewAndRating';
+import RegisterProfile from './components/RegisterProfile';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -53,16 +53,16 @@ function App() {
           element: <Contact />
         },
         {
+          path: "regist",
+          element: <RegisterProfile />
+        },
+        {
           path: "privacy",
           element: <PrivacyPolicy />
         },
         {
           path: "login",
           element: <Login />
-        },
-        {
-          path: "register",
-          element: <Register />
         },
         {
           path: "products",

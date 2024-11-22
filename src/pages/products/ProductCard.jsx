@@ -142,7 +142,7 @@ function ProductCard({ products }) {
 
       {/* Products */}
       <div className={`${viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6' : 'space-y-6'}`}>
-        {paginatedProducts.map((product) => (
+        {products.map((product) => (
           <div
             key={product.id}
             className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 ${viewMode === 'list' ? 'flex space-x-4' : ''}`}

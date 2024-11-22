@@ -1,17 +1,21 @@
-import { apiClient } from './config';
+import axios from 'axios';
 
 export const apiSignup = async (payload) => {
-    const response = await apiClient.post('/api/users/register', payload);
-    
-    return response;
+    return await axios.post('/api/users/register', payload);
 };
 
-export const apiLogin = async (payload) => {
-    const response = await apiClient.post('/api/users/login', payload);
-    
-    const { token } = response.data; 
+export const apiLogin = async ({ email, password, role }) => {
+    return await axios.post('/api/users/login', {
+        email,
+        password,
+        role
+    });
+};
 
-    localStorage.setItem('token', token);
-    
-    return response;
+export const apiGetProfile = async () => {
+    return await axios.get('/api/users/profile');
+};
+
+export const apiUpdateProfile = async (payload) => {
+    return await axios.put('/api/users/profile', payload);
 };

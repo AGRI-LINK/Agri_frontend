@@ -4,6 +4,24 @@ import { apiUpdateProfile } from '../services/users';
 
 const EditProfile = ({ userId, initialContact, initialLocation, onProfileUpdate }) => {
   const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState(null);
+  const [name, setName] = useState(initialContact.name || '');
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const getInitials = (name) => {
+    const names = name.split(' ');
+    return names.map(n => n.charAt(0).toUpperCase()).join('');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +53,29 @@ const EditProfile = ({ userId, initialContact, initialLocation, onProfileUpdate 
       <h1 className="text-3xl font-bold text-center text-[#00b207] mb-6">Edit Profile</h1>
       <div className="bg-white shadow-md rounded p-4 max-w-md mx-auto">
         <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-gray-700">Profile Image:</label>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+          </div>
+          <div className="mb-4">
+            {image ? (
+              <img src={image} alt="Profile" className="w-32 h-32 rounded-full" />
+            ) : (
+              <div className="w-32 h-32 rounded-full bg-gray-300 flex items-center justify-center text-2xl">
+                {getInitials(name)}
+              </div>
+            )}
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Name:</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
           <div className="mb-4">
             <label className="block text-gray-700">Contact:</label>
             <input
