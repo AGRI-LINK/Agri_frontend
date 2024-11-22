@@ -36,7 +36,7 @@ const Navbar = ({ cartItemCount }) => {
                   Login
                 </Link>
                 <Link
-                  to="/registerp"
+                  to="/regist"
                   className="block px-4 py-2 hover:bg-gray-200"
                   onClick={() => setIsDropdownOpen(false)}
                 >

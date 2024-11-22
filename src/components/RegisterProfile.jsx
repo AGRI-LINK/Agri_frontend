@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdCameraAlt } from 'react-icons/md';
+import EditProfile from './EditProfile';
 
 const RegisterProfile = () => {
     const navigate = useNavigate();
