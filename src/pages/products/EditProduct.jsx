@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { apiClient } from '../../services/config';
 
 const EditProduct = () => {
     const { id } = useParams(); // Get the product ID from the URL
@@ -10,9 +10,9 @@ const EditProduct = () => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        const fetchProduct = async () => {
+        const fetchProduct = async (id) => {
             try {
-                const response = await axios.get(`https://agri-link-backend.onrender.com/api/products/${id}`);
+                const response = await apiClient.get(`/api/products/${id}`);
                 setProduct(response.data);
             } catch (err) {
                 setError("Error fetching product data");
@@ -32,17 +32,17 @@ const EditProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`https://agri-link-backend.onrender.com/api/products/update/${id}`, product);
+            await apiClient.patch(`/api/products/update/${id}`, product);
             navigate(`/products/${id}`); // Redirect to the product detail page after successful update
-        } catch (err) {
+        } catch (error) {
             setError("Error updating product");
         }
     };
 
-    const handleDelete = async () => {
+    const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
             try {
-                await axios.delete(`https://agri-link-backend.onrender.com/api/products/delete/${id}`);
+                await apiClient.delete(`/api/products/delete/${id}`);
                 navigate('/products'); // Redirect to the products list after deletion
             } catch (err) {
                 setError("Error deleting product");

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { apiGetProfile } from '../services/users';
+import { apiGetProfile, apiUpdateProfile } from '../services/users';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdCameraAlt } from 'react-icons/md';
 import EditProfile from './EditProfile';
+import { apiUpdateProductbyId } from '../services/products';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -26,7 +27,7 @@ const Profile = () => {
     fetchData();
   }, []);
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -34,6 +35,10 @@ const Profile = () => {
         setImages(reader.result);
       };
       reader.readAsDataURL(file);
+      const formData = new FormData()
+      formData.append("profilePic", file)
+      const response = await apiUpdateProfile(formData);
+      console.log(response.data)
     }
   };
 

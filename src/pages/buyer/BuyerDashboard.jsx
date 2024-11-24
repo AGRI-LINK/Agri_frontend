@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 // import ProductListing from '../products/ProductListing';
-import Bsidebar from './Bsidebar';
+import Bsidebar from './BuyerSidebar';
 
 const BuyerDashboard = () => {
   const [products, setProducts] = useState([]); 

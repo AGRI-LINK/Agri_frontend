@@ -6,3 +6,7 @@ export const apiMessages = async(payload) => {
    return response;
 };
 
+export const apiGetInbox = async () => {
+   return await apiClient.get(`/api/messages/inbox`)
+};
+

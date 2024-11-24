@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Sidebar from './Sidebar';
+import Sidebar from './FarmerSidebar';
 import AddProduct from '../products/AddProduct';
 import ProductListing from '../products/ProductListing';
+import { Outlet } from 'react-router-dom';
 
 
 const FarmerDashboard = () => {
@@ -21,7 +22,7 @@ const FarmerDashboard = () => {
     <div className="flex">
       <Sidebar />
       <div className="flex-1 ml-64 p-6">
-        <AddProduct products={products} setProducts={setProducts} />
+        <Outlet />
       </div>
     </div>
   );

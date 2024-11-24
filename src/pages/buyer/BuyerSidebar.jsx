@@ -6,7 +6,7 @@ import { logout } from '../../services/config'
 import Profile from '../../components/Profile';
 import { MdSpaceDashboard } from 'react-icons/md';
 
-const Bsidebar = ({ orders }) => {
+const BuyerSidebar = ({ orders }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -15,7 +15,7 @@ const Bsidebar = ({ orders }) => {
 };
 
   return (
-    <div className="h-full bg-[#00b207] text-white w-fit p-4 fixed flex flex-col justify-between">
+    <div className="h-full bg-green-600 text-white w-fit p-4 fixed flex flex-col justify-between">
       <section>
       <section className="mb-6">
         <div>
@@ -73,4 +73,4 @@ const Bsidebar = ({ orders }) => {
   );
 };
 
-export default Bsidebar; 
+export default BuyerSidebar; 

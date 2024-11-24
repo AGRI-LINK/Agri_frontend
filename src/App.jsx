@@ -10,7 +10,7 @@ import Login from './components/Login';
 import Map from './pages/Map';
 import Payment from './pages/Payment';
 import Notifications from './components/Notifications';
-import ProductCard from './pages/products/ProductCard';
+// import ProductCard from './pages/products/ProductCard';
 import ProductListing from './pages/products/ProductListing';
 import ProductDetails from './pages/products/ProductDetails';
 import AddProduct from './pages/products/AddProduct';
@@ -25,6 +25,7 @@ import ReviewAndRating from './components/ReviewAndRating';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import OrderHistory from './pages/orders/OrderHistory';
+import ManageProducts from './pages/farmer/ManageProducts';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -92,21 +93,29 @@ function App() {
       element: <Notifications />
     },
     {
-      path: "/farmer",
+      path: "/farmerdashboard",
       element: <FarmerDashboard />,
       children: [
         {
-          path: "profile",
-          element: <Profile />
+         index: true,
+          element: <Dashboard />
         },
         {
           path: "addproduct",
           element: <AddProduct />
         },
+        {
+          path: "manage",
+          element: <ManageProducts />
+        },
+        {
+          path: "messages",
+          element: <Messaging/>
+        },
         
         {
-          path: "card",
-          element: <ProductCard />
+          path: "details",
+          element: <ProductDetails />
         },
         {
           path: "edit",

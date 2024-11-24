@@ -9,7 +9,7 @@ const Notifications = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-green-700 mb-6">Notifications</h1>
+      <h1 className="text-3xl font-bold text-center text-green-600 mb-6">Notifications</h1>
       <div className="bg-white shadow-md rounded p-4">
         <ul className="list-disc pl-5">
           {notifications.map(notification => (

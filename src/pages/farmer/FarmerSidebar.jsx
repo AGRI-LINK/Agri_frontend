@@ -4,8 +4,9 @@ import { FaPlus, FaChartLine, FaEnvelope, FaUserCircle } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 import { logout } from '../../services/config'
 import Profile from '../../components/Profile';
+import { MdSpaceDashboard } from 'react-icons/md';
 
-const Sidebar = () => {
+const FarmerSidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -13,7 +14,7 @@ const Sidebar = () => {
     navigate('/login');
 };
   return (
-    <div className="h-full bg-[#00b207] text-white w-fit p-4 fixed flex flex-col justify-between">
+    <div className="h-full bg-green-600 text-white w-fit p-4 fixed flex flex-col justify-between">
       <section>
       <section className="mb-6">
         <div>
@@ -27,22 +28,22 @@ const Sidebar = () => {
       </section>
       <section className="space-y-1">
         <div>
-          <Link to="/dashboard" className="flex items-center hover:bg-green-700 p-2 rounded">
-            <FaPlus className="mr-2" /> Dashboard
+          <Link to="/farmerdashboard" className="flex items-center hover:bg-green-700 p-2 rounded">
+              <MdSpaceDashboard className="mr-2" /> Dashboard
           </Link>
         </div>
         <div>
-          <Link to="/addproduct" className="flex items-center hover:bg-green-700 p-2 rounded">
+          <Link to="/farmerdashboard/addproduct" className="flex items-center hover:bg-green-700 p-2 rounded">
             <FaPlus className="mr-2" /> Add Products
           </Link>
         </div>
         <div>
-          <Link to="/orderhistory" className="flex items-center hover:bg-green-700 p-2 rounded">
-            <FaChartLine className="mr-2" /> Track Sales
+          <Link to="/farmerdashboard/manage" className="flex items-center hover:bg-green-700 p-2 rounded">
+            <FaChartLine className="mr-2" /> Manage Products
           </Link>
         </div>
         <div>
-          <Link to="/messages" className="flex items-center hover:bg-green-700 p-2 rounded">
+          <Link to="/farmerdashboard/messages" className="flex items-center hover:bg-green-700 p-2 rounded">
             <FaEnvelope className="mr-2" /> Messages
           </Link>
         </div>
@@ -59,4 +60,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default FarmerSidebar;

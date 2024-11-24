@@ -72,7 +72,6 @@ const ShoppingCart = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulating API call to fetch cart items
     setTimeout(() => {
       setCartItems([]);
       setIsLoading(false);

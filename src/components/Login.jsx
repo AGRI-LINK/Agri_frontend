@@ -45,10 +45,10 @@ const Login = () => {
 
         switch (selectedRole) {
           case "farmer":
-            navigate("/farmer");
+            navigate("/farmerdashboard");
             break;
           case "buyer":
-            navigate("/buyer");
+            navigate("/buyerdashboard");
             break;
           default:
             setError("Invalid user role");
@@ -65,8 +65,8 @@ const Login = () => {
 
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-[#00b207] mb-6">Login</h1>
+    <div className="container mx-auto p-16">
+      <h1 className="text-3xl font-bold text-center text-green-600 mb-6">Login</h1>
       <div className="bg-white shadow-md rounded p-4 max-w-md mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -112,7 +112,7 @@ const Login = () => {
               </label>
             </div>
           </div>
-          <button type="submit" className={`bg-[#00b207] text-white px-4 py-2 rounded hover:bg-green-700 w-full ${loading ? "cursor-wait" : "cursor-pointer"}`}
+          <button type="submit" className={`bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full ${loading ? "cursor-wait" : "cursor-pointer"}`}
             disabled={loading}>
             {loading ? "Loading..." : "Login"}
           </button>
