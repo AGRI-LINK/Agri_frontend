@@ -22,7 +22,7 @@ const Register = () => {
       setLoading(true);
 
       const response = await apiSignup(payload);
-      console.log(response); // Log the entire response object
+      console.log(response); 
 
       if (response && response.status === 201) {
         navigate('/login'); // Navigate to login if signup is successful

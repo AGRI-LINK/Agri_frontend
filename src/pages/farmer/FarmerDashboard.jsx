@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import AddProduct from '../products/AddProduct';
 import ProductListing from '../products/ProductListing';
-import Profile from '../../components/Profile';
+
 
 const FarmerDashboard = () => {
   const [products, setProducts] = useState([]);

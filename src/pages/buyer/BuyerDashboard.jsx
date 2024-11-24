@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import ProductListing from '../products/ProductListing';
+import { Outlet } from 'react-router-dom';
+
+// import ProductListing from '../products/ProductListing';
 import Bsidebar from './Bsidebar';
 
 const BuyerDashboard = () => {
@@ -9,7 +11,8 @@ const BuyerDashboard = () => {
     <div className="flex">
       <Bsidebar />
       <div className="flex-1 ml-64 p-6">
-        <ProductListing products={products} />
+        {/* <ProductListing products={products} /> */}
+        <Outlet />
       </div>
     </div>
   );

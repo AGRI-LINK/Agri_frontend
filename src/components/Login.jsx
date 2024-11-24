@@ -23,17 +23,17 @@ const Login = () => {
       console.log("Login Response:", loginResponse);
 
       if (loginResponse.status === 200) {
-        const { token } = loginResponse.data.user;
+        const { token } = loginResponse.data;
 
         //store token
         setAuthToken(token);
 
         //store role from the form
-        const selectRole = role.toLowerCase();
-        console.log("Selected Role:", selectRole);
+        const selectedRole = role.toLowerCase();
+        console.log("Selected Role:", selectedRole);
 
-        // store role
-        // setUserRole(selectRole);
+        //store role
+        setUserRole(selectedRole);
 
         // Redirect based on role
         // if (role === 'farmer') {
@@ -43,7 +43,7 @@ const Login = () => {
         // }
 
 
-        switch (selectRole) {
+        switch (selectedRole) {
           case "farmer":
             navigate("/farmer");
             break;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { apiGetProfile } from '../services/auth';
-import { FiLogOut } from 'react-icons/fi';
+import { apiGetProfile } from '../services/users';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdCameraAlt } from 'react-icons/md';
@@ -9,6 +8,7 @@ import EditProfile from './EditProfile';
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [images, setImages] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +17,9 @@ const Profile = () => {
         console.log(response.data);
         setProfile(response.data.user);
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching profile:", error);
+        setError("Failed to load profile. Please try again.");
+        setProfile(null); // optional: handling error fallback..
       }
     };
 
@@ -29,17 +31,21 @@ const Profile = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result);
+        setImages(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  if (!profile) {
-    return <div>Loading...</div>; // Display a loading message while fetching data
-  }
+  if (error) {
+    return <div className = "text-red-500">{error}</div>;
+  };
 
-  const { name, email } = profile;
+  if (!profile) {
+    return <div>Loading... </div>; // Display a loading message while fetching data...
+  };
+
+  const { name = "Unknown User", email = "No Email Provided" } = profile;
 
   const getInitials = (name) => {
     const names = name.split(' ');
@@ -47,14 +53,14 @@ const Profile = () => {
   };
 
   return (
-    <div className="user-profile p-4">
+    <div className="user-profile p-2">
       <div className="flex items-center">
         <label htmlFor="image-upload" className="cursor-pointer">
           <div className="relative">
             {images ? (
-              <img src={images} alt="User" className="rounded-full w-24 h-24 mb-2" />
+              <img src={images} alt="User" className="rounded-full w-16 h-16 mb-2" />
             ) : (
-              <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-2xl">
+              <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-2xl">
                 {getInitials(name)}
               </div>
             )}
@@ -70,15 +76,11 @@ const Profile = () => {
         </label>
         <div className="ml-4">
           <h2 className="text-lg font-bold">{name}</h2>
-          <p className="text-sm text-gray-600">{email}</p>
+          <p className="text-sm ">{email}</p>
         </div>
       </div>
-      <span className="flex space-x-4 mt-4">
-        <Link to="/">
-          <FiLogOut />
-        </Link>
-      </span>
-      <EditProfile user={profile} />
+
+      {/* <EditProfile user={profile} /> */}
     </div>
   );
 };

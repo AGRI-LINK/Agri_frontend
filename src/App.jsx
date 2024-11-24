@@ -23,6 +23,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import RootLayout from './layouts/RootLayout';
 import ReviewAndRating from './components/ReviewAndRating';
 import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import OrderHistory from './pages/orders/OrderHistory';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -103,7 +105,7 @@ function App() {
         },
         
         {
-          path: "products",
+          path: "card",
           element: <ProductCard />
         },
         {
@@ -113,11 +115,24 @@ function App() {
       ]
     },
     {
-      path: "/buyer",
+      path: "/buyerdashboard",
       element: <BuyerDashboard />,
       children: [
         {
-          path: "profile",
+          // path: "/buyerdashboard/",
+          index: true,
+          element: <Dashboard />
+        },
+        {
+          path: "products",
+          element: <ProductListing />
+        },
+        {
+          path: "cart",
+          element: <ShoppingCart />
+        },
+        {
+          path: "wishlist",
           element: <Profile />
         },
         {
@@ -128,6 +143,10 @@ function App() {
         {
           path: "reviews",
           element: <ReviewAndRating />
+        },
+        {
+          path: "orderhist",
+          element: <OrderHistory />
         },
         {
           path: "map",

@@ -34,7 +34,7 @@ const Messaging = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-md mx-auto bg-white shadow-lg">
+    <div className="flex flex-col h-[500px] max-w-md mx-auto bg-white shadow-lg">
       <div className="bg-green-600 text-white py-4 px-6">
         <h2 className="text-xl font-semibold">Chat with Farmer</h2>
       </div>
